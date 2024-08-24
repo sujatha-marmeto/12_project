@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>multiple_checkbox</title>
+    <style>
+        .inbox {
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+        }
+        p {
+            margin: 0;
+            padding-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 1</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 2</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 3</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 4</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 5</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>layout 6</p>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+        
+        let lastChecked;
+
+        function handleCheck(e) {
+            let inBetween = false;
+            if (e.shiftKey && this.checked) {
+                checkboxes.forEach(checkbox => {
+                    if (checkbox === this || checkbox === lastChecked) {
+                        inBetween = !inBetween;
+                        console.log("start");
+                    }
+
+                    if (inBetween) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+            lastChecked = this;
+        }
+
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+    </script>
+</body>
+</html>

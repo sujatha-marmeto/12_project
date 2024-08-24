@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="bands"></ul>
+    <script>
+        const bands = ['dcoenr', 'wdbei', 'rdywtfefh', 'uwvbsy', 'fuvusnf', 'y7g87j', 'huybyh'];
+
+        function strip(brandName) {
+            return brandName.replace(/^(a |the |an)/i, '').trim();
+        }
+
+        const sortedBrands = bands.sort((a, b) => {
+            const strippedA = strip(a);
+            const strippedB = strip(b);
+            return strippedA > strippedB ? 1 : -1;
+        });
+
+        document.querySelector('#bands').innerHTML = 
+        sortedBrands
+        .map(band => `<li>${band}</li>`)
+        .join('');
+    </script>
+</body>
+</html>
